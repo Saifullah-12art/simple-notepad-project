@@ -6,6 +6,7 @@
 
 #include <QAction>
 #include <QApplication>
+#include <QDebug>
 #include <QFile>
 #include <QFileDialog>
 #include <QFont>
@@ -39,8 +40,10 @@ main_window::main_window()
     setCentralWidget(editor);
 
     checker = new spell_checker("data/words.txt");
+    qDebug() << "hello correct:" << checker->is_correct("hello");
+    qDebug() << "helo correct:" << checker->is_correct("helo");
+
     spell_highlighter = new spell_checker_highlighter(checker, editor->document());
-    syn_highlighter = new syntax_highlighter(editor->document());
 
     transforms.push_back(std::make_unique<uppercase_transform>());
     transforms.push_back(std::make_unique<lowercase_transform>());

@@ -3,22 +3,21 @@
 
 #include "spell_checker.h"
 #include "spell_checker_highlighter.h"
-#include "syntax_highlighter.h"
 #include "text_transform.h"
 
 #include <QDialog>
 #include <QMainWindow>
 #include <QMenu>
-#include <QString>
 #include <QSettings>
+#include <QString>
 #include <QTextDocument>
 #include <QTextEdit>
 #include <memory>
 #include <vector>
 
 namespace Ui {
-class find_replace_dialog;
-class word_frequency_dialog;
+    class find_replace_dialog;
+    class word_frequency_dialog;
 }
 
 class main_window : public QMainWindow {
@@ -44,6 +43,7 @@ private:
     void update_title();
     void update_status_bar();
     void update_recent_files_menu();
+    void add_to_recent_files(const QString& path);
 
     void apply_transform(const text_transform& transform) const;
 
@@ -55,7 +55,6 @@ private:
         QTextDocument::FindFlags flags = QTextDocument::FindFlags()) const;
 
     void show_word_frequency();
-    void add_to_recent_files(const QString& path);
 
     QTextEdit* editor { nullptr };
     QString current_file;
@@ -66,7 +65,6 @@ private:
 
     spell_checker* checker { nullptr };
     spell_checker_highlighter* spell_highlighter { nullptr };
-    syntax_highlighter* syn_highlighter { nullptr };
 
     QMenu* recent_files_menu { nullptr };
     QSettings settings;
